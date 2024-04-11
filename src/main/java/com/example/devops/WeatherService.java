@@ -17,7 +17,7 @@ public class WeatherService {
 
         String responseString = null;
         CloseableHttpClient httpClient = HttpClients.createDefault();
-        final String API_TOKEN = "a0e568ab79e6070c16dc6e37175f0695";
+        final String API_TOKEN = "";
 
         try {
             String url = "https://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&appid=" + API_TOKEN;
