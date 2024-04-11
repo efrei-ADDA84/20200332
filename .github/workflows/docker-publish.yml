@@ -12,7 +12,7 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
         with:
-          context: .
+          context: ./devopsWeather
           push: true
           tags: erebexii/devops_weather:latest
           username: ${{ secrets.DOCKER_USERNAME }}
