@@ -6,7 +6,7 @@ Example for Efrei Paris : http://localhost:8080/weather?LAT=48.788776871408054&L
 <br> The application will return the weather in JSON format.
 <br><br>To use the application with docker :
 <br>1. Build the application with the command : mvn package
-<br>2. Build the docker image with the command (in the dockerFile directory): docker build -t devops_weather .
+<br>2. Build the docker image with the command : docker build -t devops_weather -f "C:\path\to\Dockerfile" .
 <br>3. Run the docker image with the command : docker run -p 8080:8080 --name devops devops_weather
 <br>4. You can now ping the application with the same URL as before.
 <br><br>To access the image from dockerHub you can do : docker pull erebexii/repository:tag
