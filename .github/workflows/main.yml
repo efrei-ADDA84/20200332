@@ -1,0 +1,20 @@
+name: OnPush
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Use API token
+        env:
+          API_TOKEN: ${{ secrets.api_weather_token }}
+        run: |
+          echo "API token: $API_TOKEN"
