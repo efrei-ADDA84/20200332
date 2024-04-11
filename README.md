@@ -11,3 +11,4 @@ Example for Efrei Paris : http://localhost:8080/weather?LAT=48.788776871408054&L
 <br>4. You can now ping the application with the same URL as before.
 <br><br>To access the image from dockerHub you can do : docker pull erebexii/repository:tag
 <br>Here is the docker Hub url : https://hub.docker.com/r/erebexii/repository/tags
+test
