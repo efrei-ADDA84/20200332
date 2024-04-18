@@ -17,10 +17,10 @@ public class WeatherService {
 
         String responseString = null;
         CloseableHttpClient httpClient = HttpClients.createDefault();
-        String API_TOKEN = System.getenv("API_TOKEN");
+        String API_WEATHER_TOKEN = System.getenv("API_WEATHER_TOKEN");
 
         try {
-            String url = "https://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&appid=" + API_TOKEN;
+            String url = "https://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&appid=" + API_WEATHER_TOKEN;
             HttpGet httpGet = new HttpGet(url);
 
             CloseableHttpResponse response = httpClient.execute(httpGet);
