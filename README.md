@@ -30,5 +30,28 @@ get the weather you need to ping the application with the latitude and longitude
 <br><br>Auto publish of the latest image on dockerHub.
 <br>Using github actions, the image is automatically pushed to dockerHub when a push is made on the main branch.
 We first create a target with all the dependencies and then we build the docker image.
+<br><br>
+
+# TP3 Push the image to the cloud (Azure):
 <br>
-#TP3 Push the image to the cloud (Azure):
+For this TP the goal was to push our API image (tag:latest) to the cloud on the azure ressource group of the class. 
+<br><br>
+
+You can then access the API on this link : http://devops-20200332.francecentral.azurecontainer.io:8080/?lat=5.902785&lon=102.754175
+<br>Note the port is specified to 8080 since it's the port of the application (defined in the properties).
+<br><br>
+
+A "home" route has been added to correspond to the requirements of the TP. Such that you can execute (on **linux**) the following command:
+
+```bash
+curl "http://devops-<identifiant-efrei>.francecentral.azurecontainer.io:8080/?
+lat=5.902785&lon=102.754175"
+``` 
+The "old" route are still working you can try this link to see them : <a href="http://devops-20200332.francecentral.azurecontainer.io:8080/weather?LAT=5.902785&LONG=102.754175">HERE</a>
+<br><br>The difficulty here was to add the new steps to our github actions in our YAML file. We also had to deal with several different secrets github to specify the azure credentials, api key and the azure container registry... 
+Some debugging was needed to understand the error messages and to fix them as we dit in the last TP.
+
+
+
+
+
