@@ -50,4 +50,5 @@ jobs:
           registry-password: ${{ secrets.REGISTRY_PASSWORD }}
           location: 'france central'
           name: ${{ secrets.EFREI_IDENTIFIER }}
+          secure-environment-variables: API_WEATHER_TOKEN=${{ secrets.API_WEATHER_TOKEN }}
           ports: 8080
