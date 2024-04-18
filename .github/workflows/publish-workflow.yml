@@ -22,29 +22,30 @@ jobs:
       - name: Push Docker image to Docker Hub
         run: docker push erebexii/devops_weather:latest
 
-      - name: Login to Azure container registry
-        uses: docker/login-action@v3
-        with:
-          registry: ${{ secrets.REGISTRY_LOGIN_SERVER }}
-          username: ${{ secrets.REGISTRY_USERNAME }}
-          password: ${{ secrets.REGISTRY_PASSWORD }}
-
-      - name: Build and push docker image to Azure container registry
-        uses: docker/build-push-action@v5
-        with:
-          push: true
-          tags: ${{ secrets.REGISTRY_LOGIN_SERVER }}/{{ secrets.EFREI_IDENTIFIER }}:latest
-
-      - name: Login via Azure CLI
+      - name: Login to Azure
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Build and push Docker image to ACR
+        uses: azure/docker-login@v1
+        with:
+          login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
+
+      - name: Build Docker image for ACR
+        run: docker build -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/${{ secrets.EFREI_IDENTIFIER }}:v1
+
+
+      - name: Push Docker image to ACR
+        run: docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/${{ secrets.EFREI_IDENTIFIER }}:v1
 
       - name: Deploy to Azure Container Instance (ACI)
         uses: azure/aci-deploy@v1
         with:
           resource-group: ${{ secrets.RESOURCE_GROUP }}
           dns-name-label: devops-${{ secrets.EFREI_IDENTIFIER }}
-          image-name: ${{ secrets.REGISTRY_LOGIN_SERVER }}/${{ secrets.ACR_REPOSITORY_NAME }}:${{ github.sha }}
+          image-name: ${{ secrets.REGISTRY_LOGIN_SERVER }}/${{ secrets.EFREI_IDENTIFIER }}:v1
           location: francecentral
           name: ${{ secrets.EFREI_IDENTIFIER }}
