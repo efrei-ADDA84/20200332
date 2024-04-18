@@ -33,7 +33,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: ${{ secrets.REGISTRY_LOGIN_SERVER }}/{{ secrets.ACR_REPOSITORY_NAME }}:latest
+          tags: ${{ secrets.REGISTRY_LOGIN_SERVER }}/{{ secrets.EFREI_IDENTIFIER }}:latest
 
       - name: Login via Azure CLI
         uses: azure/login@v1
