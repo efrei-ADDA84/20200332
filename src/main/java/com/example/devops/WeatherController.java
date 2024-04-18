@@ -24,4 +24,11 @@ public class WeatherController {
         this.weatherService = new WeatherService();
         return weatherService.getWeather(LAT, LONG);
     }
+
+    @GetMapping ("/")
+    public String homeGetWeather(@RequestParam String lat, @RequestParam String lon) {
+        this.weatherService = new WeatherService();
+        return weatherService.getWeather(lat, lon);
+    }
+
 }

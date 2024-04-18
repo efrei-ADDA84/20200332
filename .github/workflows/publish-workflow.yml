@@ -50,3 +50,4 @@ jobs:
           registry-password: ${{ secrets.REGISTRY_PASSWORD }}
           location: francecentral
           name: ${{ secrets.EFREI_IDENTIFIER }}
+          ports: 8080
