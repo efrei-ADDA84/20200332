@@ -30,3 +30,5 @@ get the weather you need to ping the application with the latitude and longitude
 <br><br>Auto publish of the latest image on dockerHub.
 <br>Using github actions, the image is automatically pushed to dockerHub when a push is made on the main branch.
 We first create a target with all the dependencies and then we build the docker image.
+<br>
+#TP3 Push the image to the cloud (Azure):
