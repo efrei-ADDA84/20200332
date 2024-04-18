@@ -35,7 +35,8 @@ jobs:
           password: ${{ secrets.REGISTRY_PASSWORD }}
 
       - name: Build Docker image for ACR
-        run: docker build -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/${{ secrets.EFREI_IDENTIFIER }}:v1
+        run: docker build --build-arg API_WEATHER_TOKEN=${{ secrets.API_WEATHER_TOKEN }} -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/${{ secrets.EFREI_IDENTIFIER }}:v1 .
+
 
 
       - name: Push Docker image to ACR
