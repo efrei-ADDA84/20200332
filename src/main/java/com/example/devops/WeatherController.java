@@ -27,9 +27,8 @@ public class WeatherController {
 
     @GetMapping ("/")
     public String homeGetWeather(@RequestParam String lat, @RequestParam String lon) {
-/*        this.weatherService = new WeatherService();
-        return weatherService.getWeather(lat, lon);*/
-        return System.getenv("API_WEATHER_TOKEN");
+        this.weatherService = new WeatherService();
+        return weatherService.getWeather(lat, lon);
     }
 
 }
