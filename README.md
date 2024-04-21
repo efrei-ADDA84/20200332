@@ -30,6 +30,7 @@ get the weather you need to ping the application with the latitude and longitude
 <br><br>Auto publish of the latest image on dockerHub.
 <br>Using github actions, the image is automatically pushed to dockerHub when a push is made on the main branch.
 We first create a target with all the dependencies and then we build the docker image.
+
 <br><br>
 
 # TP3 Push the image to the cloud (Azure):
@@ -50,8 +51,46 @@ lat=5.902785&lon=102.754175"
 The "old" route are still working you can try this link to see them : <a href="http://devops-20200332.francecentral.azurecontainer.io:8080/weather?LAT=5.902785&LONG=102.754175">HERE</a>
 <br><br>The difficulty here was to add the new steps to our github actions in our YAML file. We also had to deal with several different secrets github to specify the azure credentials, api key and the azure container registry... 
 Some debugging was needed to understand the error messages and to fix them as we dit in the last TP.
-
-
-
-
+<br><br>
+# TP4 Azure & Terraform :
+<br>
+This TP is about using terraform to create a VM on azure. All resources for the TP are in the terraform folder because it is different from the others TPs as we are no deploying an API.
+<br>
+To create the VM you need to have terraform installed on your computer (added as a global environment), and have an azure subscription. Here we are using the class subscription.
+<br>
+To create the VM you need to execute the following commands in the terraform folder :
+```bash
+terraform init
+terraform apply
+```
+You will now have a VM on azure with the name "devops-20200332" and the public IP will be displayed in the output of the terraform apply command (for example for me it was : 52.143.134.126).
+<br>
+To connect to the VM you can use the following command :
+```bash
+ssh -i id_rsa devops@{YOUR_PUBLIC_ID} cat /etc/os-release
+```
+If everything is working you should see the OS of the VM : 
+```bash
+PRETTY_NAME="Ubuntu 22.04.4 LTS"
+NAME="Ubuntu"
+VERSION_ID="22.04"
+VERSION="22.04.4 LTS (Jammy Jellyfish)"
+VERSION_CODENAME=jammy
+ID=ubuntu
+ID_LIKE=debian
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+UBUNTU_CODENAME=jammy
+```
+<br>
+The main difficulty here was to understand the terraform syntax and the different resources that we can use. The terraform documentation was very useful to understand the different resources and how to use them.
+<br>
+The connection via ssh was also a bit tricky because we had to use the private key that we generated with the terraform script. And we needed to specify the creation of a local file (id_rsa) to store the private key to establish the connection.
+<br>
+Once finished you can destroy the VM with the following command :
+```bash
+terraform destroy
+```
 
