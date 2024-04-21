@@ -56,20 +56,25 @@ Some debugging was needed to understand the error messages and to fix them as we
 <br>
 This TP is about using terraform to create a VM on azure. All resources for the TP are in the terraform folder because it is different from the others TPs as we are no deploying an API.
 <br>
-To create the VM you need to have terraform installed on your computer (added as a global environment), and have an azure subscription. Here we are using the class subscription.
+To create the VM you need to have terraform installed on your computer (added as an environment variable), and have an azure subscription. Here we are using the class subscription.
 <br>
 To create the VM you need to execute the following commands in the terraform folder :
+
 ```bash
 terraform init
 terraform apply
 ```
+
 You will now have a VM on azure with the name "devops-20200332" and the public IP will be displayed in the output of the terraform apply command (for example for me it was : 52.143.134.126).
 <br>
 To connect to the VM you can use the following command :
+
 ```bash
 ssh -i id_rsa devops@{YOUR_PUBLIC_ID} cat /etc/os-release
 ```
-If everything is working you should see the OS of the VM : 
+
+If everything is working you should see the OS of the VM :
+
 ```bash
 PRETTY_NAME="Ubuntu 22.04.4 LTS"
 NAME="Ubuntu"
@@ -90,6 +95,7 @@ The main difficulty here was to understand the terraform syntax and the differen
 The connection via ssh was also a bit tricky because we had to use the private key that we generated with the terraform script. And we needed to specify the creation of a local file (id_rsa) to store the private key to establish the connection.
 <br>
 Once finished you can destroy the VM with the following command :
+
 ```bash
 terraform destroy
 ```
